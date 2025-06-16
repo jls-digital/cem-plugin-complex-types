@@ -1,0 +1,8 @@
+/* Code block underneath description should not wrap line breaks */
+.css-1f9domv > .css-o1d7ko {
+  display: block;
+  min-width: 100%;
+  overflow: auto;
+  white-space: pre;
+  width: 1px;
+}
