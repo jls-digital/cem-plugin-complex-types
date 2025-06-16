@@ -1,98 +1,52 @@
-# cem-plugin-template
+# cem-plugin-complex-types
 
-This is a starter repository to easily get set up to write custom plugins for [@custom-elements-manifest/analyzer](https://github.com/open-wc/custom-elements-manifest). For more information on authoring custom plugins, see the [authoring plugins documentation](https://github.com/open-wc/custom-elements-manifest/blob/master/packages/analyzer/docs/plugins.md).
+[![NPM](https://img.shields.io/npm/l/cem-plugin-complex-types)](https://github.com/jls-digital/cem-plugin-complex-types/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/v/cem-plugin-complex-types)](https://www.npmjs.com/package/cem-plugin-complex-types)
+[![install size](https://packagephobia.com/badge?p=cem-plugin-complex-types)](https://packagephobia.com/result?p=cem-plugin-complex-types)
 
-## Development
+This custom elements manifest analyzer plugin adds support for resolving complex types in custom element properties
 
-```bash
-# install dependencies
-npm install
+![Screenshot of Addon](./docs/screenshot_1.png)
 
-# start local development
-npm start
+## Installation
 
-# run tests
-npm test
-```
+1. `npm install --save-dev cem-plugin-complex-types`
+2. Add `cem-plugin-complex-types` to your cem config
+3. Link a css file in your storybook's `preview-head.html`
 
-> **TIP:** When writing custom plugins, [ASTExplorer](https://astexplorer.net/#/gist/f99a9fba2c21e015d0a8590d291523e5/cce02565e487b584c943d317241991f19b105f94) is your friend 🙂
-
-## Usage
-
-### Install:
-
-```bash
-npm i -D cem-plugin-<pluginname>
-```
-
-### Import
-
-`custom-elements-manifest.config.js`:
-```js
-import myPlugin from 'cem-plugin-template';
-
+```ts
+// custom-elements-manifest.config.mjs
 export default {
+  // ...
   plugins: [
-    myPlugin()
-  ]
-}
+    // ...
+    cemPluginComplexTypes(['./src/**/*.ts']),
+  ],
+};
 ```
 
-## Supported syntax
-
-Document an example of the syntax your plugin supports
-
-```js
-export class MyElement extends HTMLElement {
-  /**
-   * @foo Some custom information!
-   */ 
-  message = ''
-}
+```html
+// .storybook/preview-head.html
+<link rel="stylesheet" href="node_modules/cem-plugin-complex-types/preview-head-fix.css" />
 ```
 
-## Expected output
+## FAQ
 
-Document an example of the expected output custom elements manifest
+(Click on a question to see the answer.)
 
-```diff
-{
-  "schemaVersion": "0.1.0",
-  "readme": "",
-  "modules": [
-    {
-      "kind": "javascript-module",
-      "path": "my-element.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MyElement",
-          "members": [
-            {
-              "kind": "field",
-              "name": "message",
-              "default": "",
-+             "foo": "Some custom information!"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MyElement",
-          "declaration": {
-            "name": "MyElement",
-            "module": "my-element.js"
-          }
-        }
-      ]
-    }
-  ]
-}
-```
+<details>
+<summary><b>Q: Can it handle classes, interfaces, unions as well as primitive types?</b></summary>
+
+A: Yes, the plugin should be able to handle all of these types. It will resolve the type
+to its source code and display it in the Storybook addon panel. If the type is a class or interface, it will show the properties and methods of that type. If it's a union type, it will show all possible types in the union.
+</details>
+
+## Contributing
+
+We encourage you to contribute to this project! Please check out the
+[Contributing guide](CONTRIBUTING.md) for guidelines about how to proceed and
+how to set up your dev environment. Join us!
+
+## License
+
+CEM-Plugin-Complex-Types is released under the [MIT License](LICENSE).
