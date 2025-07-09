@@ -16,6 +16,7 @@ This custom elements manifest analyzer plugin adds support for resolving complex
 
 ```ts
 // custom-elements-manifest.config.mjs
+import cemPluginComplexTypes from 'cem-plugin-complex-types'
 export default {
   // ...
   plugins: [

@@ -143,7 +143,7 @@ export default function cemPluginComplexTypes(
           )
 
           const classDeclarationObject =
-            context.classDeclarations.find(
+            context.classDeclarations?.find(
               (classDeclaration) => classDeclaration.className === className,
             )?.resolvedProperties || {}
 
